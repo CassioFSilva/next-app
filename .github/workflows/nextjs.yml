@@ -81,10 +81,11 @@ jobs:
         uses: actions/upload-pages-artifact@v1
         with:
           path: ./out
-          
+
   # Lint job
   lint:
     runs-on: ubuntu-latest
+    needs: build
     steps:
       - name: Run Linting
         run: |
