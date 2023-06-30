@@ -25,6 +25,17 @@ concurrency:
   cancel-in-progress: false
 
 jobs:
+
+  # Lint job
+  lint:
+    runs-on: ubuntu-latest
+    needs: build
+    steps:
+      - name: Run Linting
+        run: |
+          echo "Running Linting Tests..."
+          npm run lint
+          
   # Build job
   build:
     runs-on: ubuntu-latest
@@ -81,16 +92,6 @@ jobs:
         uses: actions/upload-pages-artifact@v1
         with:
           path: ./out
-
-  # Lint job
-  lint:
-    runs-on: ubuntu-latest
-    needs: build
-    steps:
-      - name: Run Linting
-        run: |
-          echo "Running Linting Tests..."
-          npm run lint
 
   # Deployment job
   deploy:
